@@ -1,0 +1,21 @@
+id: TFMv5_tx_controller
+label: TX Controller
+category: '[TFMv5]'
+
+templates:
+  imports: import TFMv5
+  make: TFMv5.tx_controller()
+
+
+inputs:
+- domain: message
+  id: state
+  optional: true
+
+outputs:
+- domain: message
+  id: index
+  optional: true
+
+
+file_format: 1

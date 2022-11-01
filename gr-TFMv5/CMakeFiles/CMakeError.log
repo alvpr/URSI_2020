@@ -1,0 +1,90 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_86215/fast && /usr/bin/make -f CMakeFiles/cmTC_86215.dir/build.make CMakeFiles/cmTC_86215.dir/build
+make[1]: se entra en el directorio '/home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_86215.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_86215.dir/src.c.o   -c /home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_86215
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_86215.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_86215.dir/src.c.o  -o cmTC_86215 
+/usr/bin/ld: CMakeFiles/cmTC_86215.dir/src.c.o: en la función `main':
+src.c:(.text+0x46): referencia a `pthread_create' sin definir
+/usr/bin/ld: src.c:(.text+0x52): referencia a `pthread_detach' sin definir
+/usr/bin/ld: src.c:(.text+0x63): referencia a `pthread_join' sin definir
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_86215.dir/build.make:87: cmTC_86215] Error 1
+make[1]: se sale del directorio '/home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_86215/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_28613/fast && /usr/bin/make -f CMakeFiles/cmTC_28613.dir/build.make CMakeFiles/cmTC_28613.dir/build
+make[1]: se entra en el directorio '/home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_28613.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_28613.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_28613
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28613.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_28613.dir/CheckFunctionExists.c.o  -o cmTC_28613  -lpthreads 
+/usr/bin/ld: no se puede encontrar -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_28613.dir/build.make:87: cmTC_28613] Error 1
+make[1]: se sale del directorio '/home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_28613/fast] Error 2
+
+
+
+Performing C++ SOURCE FILE Test HAVE_CREATEFILEMAPPING failed with the following output:
+Change Dir: /home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_77aa9/fast && /usr/bin/make -f CMakeFiles/cmTC_77aa9.dir/build.make CMakeFiles/cmTC_77aa9.dir/build
+make[1]: se entra en el directorio '/home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_77aa9.dir/src.cxx.o
+/usr/bin/c++    -fvisibility=hidden -Wsign-compare -Wall -Wno-uninitialized -fcx-limited-range -DHAVE_CREATEFILEMAPPING   -std=c++14 -o CMakeFiles/cmTC_77aa9.dir/src.cxx.o -c /home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp/src.cxx
+/home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp/src.cxx:2:14: fatal error: windows.h: No existe el archivo o el directorio
+    2 |     #include <windows.h>
+      |              ^~~~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_77aa9.dir/build.make:66: CMakeFiles/cmTC_77aa9.dir/src.cxx.o] Error 1
+make[1]: se sale del directorio '/home/alvaropr/workarea/gnuradio/gr-TFMv5/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_77aa9/fast] Error 2
+
+
+Source file was:
+
+    #include <windows.h>
+    int main(){
+        HANDLE handle;
+        int size;
+        LPCTSTR lpName;
+        handle = CreateFileMapping(
+                         INVALID_HANDLE_VALUE,    // use paging file
+                         NULL,                    // default security
+                         PAGE_READWRITE,          // read/write access
+                         0,                       // max. object size
+                         size,                    // buffer size
+                         lpName);                 // name of mapping object
+        return 0;
+    } 

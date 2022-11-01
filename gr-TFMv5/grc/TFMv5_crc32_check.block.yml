@@ -1,0 +1,52 @@
+id: TFMv5_crc32_check
+label: CRC32 Check
+category: '[TFMv5]'
+
+templates:
+  imports: import TFMv5
+  make: TFMv5.crc32_check(${npackets},${r1},${r2},${r3})
+
+parameters:
+- id: npackets
+  label: Rate number of Packets 
+  dtype: float
+
+- id: r1
+  label: Rate QPSK
+  dtype: float
+
+- id: r2
+  label: Rate 16-QAM
+  dtype: float
+
+- id: r3
+  label: Rate 64-QAM
+  dtype: float
+
+
+inputs:
+- domain: message
+  id: in
+  optional: true
+- domain: message
+  id: in_state
+  optional: true
+
+outputs:
+- domain: message
+  id: out
+  optional: true
+
+- domain: message
+  id: out_state
+  optional: true
+
+asserts:
+- ${ npackets > 0}
+- ${ r1 >= 0}
+- ${ r2 >= 0}
+- ${ r3 >= 0}
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

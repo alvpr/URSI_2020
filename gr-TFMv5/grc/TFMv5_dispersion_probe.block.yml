@@ -1,0 +1,75 @@
+id: TFMv5_dispersion_probe
+label: Dispersion Probe
+category: '[TFMv5]'
+
+templates:
+  imports: import TFMv5
+  make: TFMv5.dispersion_probe(${constellation}, ${length}, ${length_init}, ${th1}, ${th2}, ${th3}, ${th4},${th5},${th6})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+parameters:
+- id: constellation
+  label: Constellation
+  dtype: float
+  options: [0, 1, 2, 3]
+  option_labels: [BPSK, QPSK, 16QAM, 64QAM]
+  
+- id: length
+  label: Length (samples)
+  dtype: float
+
+- id: length_init
+  label: Start length (samples)
+  dtype: float
+
+- id: th1
+  label: Threshold 1
+  dtype: float
+
+- id: th2
+  label: Threshold 2
+  dtype: float
+
+- id: th3
+  label: Threshold 3
+  dtype: float
+
+- id: th4
+  label: Threshold 4
+  dtype: float
+
+- id: th5
+  label: Threshold 5
+  dtype: float
+
+- id: th6
+  label: Threshold 6
+  dtype: float
+
+
+inputs:
+- label: in
+  dtype: complex
+
+outputs:
+-   domain: message
+    id: threshold
+    optional: true
+
+
+asserts:
+- ${ constellation >= -1 }
+- ${ length > 0 }
+- ${ length_init >= 0 }
+- ${ th1 >= 0 }
+- ${ th2 >= 0 }
+- ${ th3 >= 0 }
+- ${ th4 >= 0 }
+- ${ th5 >= 0 }
+- ${ th6 >= 0 }
+
+file_format: 1

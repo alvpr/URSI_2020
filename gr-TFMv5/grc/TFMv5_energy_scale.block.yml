@@ -1,0 +1,42 @@
+id: TFMv5_energy_scale
+label: Energy Scale
+category: '[TFMv5]'
+
+templates:
+  imports: import TFMv5
+  make: TFMv5.energy_scale(${eavg}, ${length}, ${init_scale})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+
+parameters:
+- id: eavg
+  label: Energy Avg
+  dtype: float
+
+- id: length
+  label: Length (samples)
+  dtype: float
+
+- id: init_scale
+  label: Init Scale
+  dtype: float
+
+
+inputs:
+- label: in
+  dtype: complex
+
+outputs:
+- label: out
+  dtype: complex
+
+asserts:
+- ${ eavg > 0 }
+- ${ length > 0 }
+- ${ init_scale > 0 }
+
+file_format: 1
