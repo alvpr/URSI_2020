@@ -1,5 +1,5 @@
 # URSI_2020
-URSI_2020 Paper code
+Mock-up digital communication system based on the use of USRP over Linux
 
 ## About this repo
 This is the GNU Radio out-of-tree module and the grc and Python files for the paper presented in the National (Spain) URSI Congress: "Mock-up digital communication system based on the use of USRP over Linux". The code has been updated inn 2022. It includes:
